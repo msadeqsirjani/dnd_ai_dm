@@ -144,7 +144,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 MOHAMMADSAEGH SIRJANI - [@msadeqsirjani](https://twitter.com/msadeqsirjani)
 
-Project Link: [https://github.com/yourusername/dnd-ai-gm](https://github.com/msadeqsirjani/dnd-ai-gm)
+Project Link: [https://github.com/msadeqsirjani/dnd-ai-gm](https://github.com/msadeqsirjani/dnd-ai-gm)
 
 ---
 <p align="center">
