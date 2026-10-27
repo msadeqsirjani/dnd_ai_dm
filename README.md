@@ -1,153 +1,79 @@
-# 🎲 AI-Powered D&D Game Master 🐉
+# AI Dungeon Master
 
+A console role-playing game inspired by Dungeons & Dragons 5th Edition. You create a hero, explore a procedurally generated region, talk to its people, take quests and fight monsters. An OpenAI model narrates the story and voices the characters. The game engine handles every rule: dice, combat, skill checks, XP and loot. Without an API key, a built-in offline narrator takes over, so the game is always playable.
 
-An intelligent Dungeon Master powered by AI that creates dynamic, engaging D&D adventures! This console-based application generates unique storylines, manages NPCs, and handles combat mechanics while adapting to player choices.
+## Features
 
-## ✨ Features
+- **Visual terminal UI** (built with [rich](https://github.com/Textualize/rich)): ASCII art for every place and monster, HP and XP bars, a live "paths from here" map, an enemy panel in combat, color-coded hits and dice rolls, and tables for stats, inventory, quests and shop.
+- **Character creation:** 5 races, 4 classes (Fighter, Rogue, Wizard, Cleric), standard array or 4d6-drop-lowest ability scores.
+- **5e-style rules:** ability modifiers, proficiency, armor class, skill checks, advantage and disadvantage, critical hits, levels 1–10.
+- **Turn-based combat:** initiative, attack, dodge, flee, potions and one class feature per class.
+- **Procedural world:** a connected map of 7 places with NPCs, weather, a day/night clock and danger levels.
+- **Free-form actions:** type anything ("climb the old well"). The DM decides whether a skill check is needed, the engine rolls it, and the DM narrates the outcome.
+- **Talking NPCs:** each NPC has a personality and a disposition, and remembers recent conversations.
+- **Quests:** the village elder hands out defeat, visit and talk objectives, with XP and gold rewards.
+- **Saving:** save, load and autosave as JSON files.
+- **Reproducibility:** `--seed` produces the same world and dice rolls each run.
 
-- 🤖 AI-driven storyline generation using GPT models
-- 🎭 Dynamic NPC creation and management
-- ⚔️ Turn-based combat system with D&D 5e rules
-- 🌍 Procedural world generation
-- 🎲 Realistic dice rolling mechanics
-- 💬 Natural language processing for player commands
+## Requirements
 
-## 🏗️ Project Structure
+- Python 3.10 or newer
+- An OpenAI API key (optional; without one the game uses the offline narrator)
 
-```bash
-dnd_ai_dm/
-├── core/ # Core game mechanics
-│ ├── game_manager.py # Main game controller
-│ ├── story_generator.py # AI story generation
-│ ├── npc_manager.py # NPC handling
-│ └── combat_system.py # Combat mechanics
-├── models/ # Game entities
-│ ├── character.py # Player character
-│ ├── npc.py # NPC definition
-│ └── world_state.py # World tracking
-├── utils/ # Utility functions
-│ ├── dice.py # Dice rolling
-│ └── text_processor.py # Text handling
-└── main.py # Entry point
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.8+
-- OpenAI API key
-
-### Installation
-
-1. **Clone the repository**
+## Quick start
 
 ```bash
 git clone https://github.com/msadeqsirjani/dnd_ai_dm.git
-```
-
-2. **Create a virtual environment**
-
-```bash
-python -m venv venv
-```
-
-3. **Activate the virtual environment**
-
-```bash
-source venv/bin/activate
-```
-
-4. **Install requirements**
-
-```bash
+cd dnd_ai_dm
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-
-5. **Set up environment variables**
-
-Create a `.env` file in the project root:
-
-```bash
-OPENAI_API_KEY=<your-openai-api-key>
-```
-
-### 🎮 Running the Game
-
-```bash
+cp .env.example .env    # then set OPENAI_API_KEY in .env
 python main.py
 ```
 
-## 🎯 Core Components
-
-### 🤖 Story Generator
-
-- Utilizes OpenAI's GPT models
-- Creates dynamic quest narratives
-- Adapts story based on player choices
-
-### 🎭 NPC Manager
-
-- Generates unique NPCs with personalities
-- Manages NPC interactions and relationships
-- Tracks NPC locations and knowledge
-
-### ⚔️ Combat System
-
-- Initiative-based turn order
-- D&D 5e combat rules
-- Dice rolling mechanics
-
-### 🌍 World State
-
-- Tracks game world status
-- Manages locations and quests
-- Handles time and weather systems
-
-## 📝 Example Gameplay
+To play without an API key:
 
 ```bash
-Welcome to AI D&D!
-=================
-Your quest begins:
-You find yourself in the village of Eldermist, where rumors of strange
-disappearances have been circulating...
-What would you like to do?: talk to innkeeper
+python main.py --offline --quick
 ```
 
-### Adding New Features
+## Usage
 
-1. Create new modules in appropriate directories
-2. Update the GameManager to integrate new features
-3. Add tests for new functionality
-4. Update documentation
+```text
+python main.py [--offline] [--quick] [--load NAME] [--seed N] [--model NAME]
+```
 
-## 🤝 Contributing
+In the game, type `help` to see all commands. Common ones:
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+```text
+look                      talk elder about the wolves
+go whisperwood            explore
+attack goblin 2           use healing potion
+stats                     save my-hero
+```
 
-## 📜 License
+## Development
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+pip install -r requirements-dev.txt
+python -m pytest
+black .
+```
 
-## 🙏 Acknowledgments
+## Documentation
 
-- OpenAI for GPT API
-- D&D 5e SRD for game mechanics
+- [Getting started](docs/getting-started.md): your first adventure, step by step
+- How-to guides:
+  - [Configure the AI narrator](docs/guides/configure-the-ai-narrator.md)
+  - [Save and load games](docs/guides/save-and-load.md)
+  - [Add monsters, places, items and classes](docs/guides/add-content.md)
+- Reference:
+  - [Commands](docs/reference/commands.md)
+  - [Configuration and CLI](docs/reference/configuration.md)
+  - [Game rules](docs/reference/rules.md)
+- [Architecture](docs/architecture.md): how the engine and the narrator fit together
 
-## 📞 Contact
+## License
 
-MOHAMMADSAEGH SIRJANI - [@msadeqsirjani](https://twitter.com/msadeqsirjani)
-
-Project Link: [https://github.com/msadeqsirjani/dnd_ai_dm](https://github.com/msadeqsirjani/dnd_ai_dm)
-
----
-<p align="center">
-  Made with ❤️ by MOHAMMADSADEGH SIRJANI
-</p>
-
+MIT. See [LICENSE](LICENSE).
