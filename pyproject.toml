@@ -1,0 +1,14 @@
+[project]
+name = "dnd-ai-dm"
+version = "0.2.0"
+description = "A console D&D 5e-inspired adventure run by an AI Dungeon Master."
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
